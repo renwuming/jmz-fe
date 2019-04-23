@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>首页 | 截码战</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <link rel="alternate icon" type="image/png" href="assets/i/favicon.png">
+  <link rel="stylesheet" href="assets/css/amazeui.min.css" />
+  <link rel="stylesheet" href="assets/css/app.css">
+  <style>
+    .header {
+      text-align: center;
+    }
+
+    .header h1 {
+      font-size: 200%;
+      color: #333;
+      margin-top: 30px;
+    }
+
+    .header p {
+      font-size: 14px;
+    }
+
+    .am-cf {
+      height: 38px;
+      text-align: center;
+    }
+
+    .am-text-lg {
+      font-size: 24px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="header">
+    <div class="am-g">
+      <h1>截码战<a href='./rule' class='rule-tip' target='_blank'>| 查看规则</a></h1>
+    </div>
+    <hr />
+  </div>
+  <div class="am-g">
+    <div class="am-u-lg-6 am-u-md-8 am-u-sm-centered">
+      <br>
+      <br>
+      <div class="am-cf"><strong class="am-text-primary am-text-lg" id='nick'></strong></div>
+      <br>
+      <br />
+      <div class="am-cf" style='text-align: center;'>
+        <input name="" value="创建房间" class="am-btn am-btn-primary am-btn-sm" id='submit'>
+      </div>
+      <!-- <p>© 2019 created by wuming&youtang</p> -->
+    </div>
+  </div>
+  <script src='./assets/js/config.js'></script>
+  <script src='./assets/js/zepto.js'></script>
+  <script>
+    var submit = document.querySelector('#submit')
+    var nick = document.querySelector('#nick')
+    getUserInfo()
+
+    function getUserInfo() {
+      $.ajax({
+        url: HOST + '/users',
+        type: "GET",
+        crossDomain: true,
+        xhrFields: {
+          withCredentials: true
+        },
+        success: function (res) {
+          if (res.code === 408) {
+            gotoLogin()
+          } else {
+            nick.innerHTML = res.nick
+          }
+        },
+      })
+    }
+
+    submit.addEventListener('click', function () {
+      $.ajax({
+        url: HOST + '/rooms',
+        contentType: "application/json",
+        type: "POST",
+        crossDomain: true,
+        xhrFields: {
+          withCredentials: true
+        },
+        dataType: 'json',
+        success: function (res) {
+          if (res.code === 408) {
+            gotoLogin()
+          } else if (res.id) {
+            window.location = './room?id=' + res.id
+          }
+        },
+      })
+    })
+  </script>
+</body>
+
+</html>
