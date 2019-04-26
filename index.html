@@ -11,52 +11,88 @@
   <meta http-equiv="Cache-Control" content="no-siteapp" />
   <link rel="alternate icon" type="image/png" href="assets/i/favicon.png">
   <link rel="stylesheet" href="assets/css/amazeui.min.css" />
+  <link rel="stylesheet" href="assets/css/admin.css">
   <link rel="stylesheet" href="assets/css/app.css">
   <style>
-    .header {
-      text-align: center;
+    .admin-content,
+    .admin-sidebar {
+      overflow: hidden;
     }
 
-    .header h1 {
-      font-size: 200%;
-      color: #333;
-      margin-top: 30px;
+    #nick {
+      color: #0e90d2;
+      font-weight: bold;
+      font-size: 150%;
     }
 
-    .header p {
-      font-size: 14px;
-    }
-
-    .am-cf {
-      height: 38px;
-      text-align: center;
-    }
-
-    .am-text-lg {
-      font-size: 24px;
+    #submit {
+      color: #0e90d2;
     }
   </style>
 </head>
 
 <body>
-  <div class="header">
-    <div class="am-g">
-      <h1>截码战<a href='./rule' class='rule-tip' target='_blank'>| 查看规则</a></h1>
+  <header class="am-topbar am-topbar-inverse admin-header">
+    <div class="am-topbar-brand">
+      <strong>截码战</strong>&nbsp;<small>首页</small>
     </div>
-    <hr />
-  </div>
-  <div class="am-g">
-    <div class="am-u-lg-6 am-u-md-8 am-u-sm-centered">
-      <br>
-      <br>
-      <div class="am-cf"><strong class="am-text-primary am-text-lg" id='nick'></strong></div>
-      <br>
-      <br />
-      <div class="am-cf" style='text-align: center;'>
-        <input name="" value="创建房间" class="am-btn am-btn-primary am-btn-sm" id='submit'>
+  </header>
+
+  <div class="am-cf admin-main">
+    <!-- sidebar start -->
+    <div class="admin-sidebar am-offcanvas" id="admin-offcanvas">
+      <div class="am-offcanvas-bar admin-offcanvas-bar">
+        <ul class="am-list admin-sidebar-list">
+          <li><a href="#"><span class="am-icon"></span> <span id='nick'></span></a></li>
+          <li><a href="#" id='submit'><span class="am-icon-home"></span> 创建房间</a></li>
+          <li><a href="./rule" target='_blank'><span class="am-icon-book"></span> 查看规则</a></li>
+          <li><a href="./login"><span class="am-icon-sign-out"></span> 注销</a></li>
+        </ul>
+
+        <div class="am-panel am-panel-default admin-sidebar-panel">
+          <div class="am-panel-bd">
+            <p><span class="am-icon-bookmark"></span> 公告</p>
+            <p>祝大家玩的开心 :)</p>
+          </div>
+        </div>
       </div>
-      <!-- <p>© 2019 created by wuming&youtang</p> -->
     </div>
+    <!-- sidebar end -->
+
+    <!-- content start -->
+    <div class="admin-content">
+      <div class="admin-content-body">
+        <div class="am-cf am-padding am-padding-bottom-0">
+          <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">房间列表</strong></div>
+        </div>
+
+        <hr>
+
+
+        <div class="am-g">
+          <div class="am-u-sm-12">
+            <form class="am-form">
+              <table class="am-table am-table-striped am-table-hover table-main">
+                <thead>
+                  <tr>
+                    <th class="table-check"></th>
+                    <th class="table-id"></th>
+                    <th class="table-title">房间名</th>
+                    <th class="table-type">状态</th>
+                    <th class="table-set"></th>
+                  </tr>
+                </thead>
+                <tbody id='tbody'>
+                  
+                </tbody>
+              </table>
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <!-- content end -->
   </div>
 
   <footer class="am-margin-top">
@@ -72,6 +108,45 @@
     var submit = document.querySelector('#submit')
     var nick = document.querySelector('#nick')
     getUserInfo()
+    getRoomList()
+
+    function getRoomList() {
+      $.ajax({
+        url: HOST + '/rooms',
+        type: "GET",
+        crossDomain: true,
+        xhrFields: {
+          withCredentials: true
+        },
+        success: function (res) {
+          if (res.code === 408) {
+            gotoLogin()
+          } else {
+            console.log(res)
+            var list = res.map((room, index) => {
+              const status = room.activeGame ? '游戏中' : '未开始游戏'
+              let html = `
+              <tr>
+                <td></td>
+                <td>${index + 1}</td>
+                <td><a href="#">${room.userList[0].nick}的房间</a></td>
+                <td><a href="#">${status}</a></td>
+                <td>
+                  <div class="am-btn-toolbar">
+                    <div class="am-btn-group am-btn-group-xs">
+                      <button class="am-btn am-btn-default am-btn-xs am-text-secondary"><a href="./room?id=${room._id}"><span class="am-icon-sign-in"></span>&nbsp;&nbsp;进入房间</a></button>
+                    </div>
+                  </div>
+                </td>
+              </tr>`
+              return html
+            })
+            document.querySelector('#tbody').innerHTML = list.join('')
+          }
+        },
+      })
+      setTimeout(getRoomList, 3000)
+    }
 
     function getUserInfo() {
       $.ajax({
