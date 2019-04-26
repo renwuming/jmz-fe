@@ -11,6 +11,7 @@
   <meta http-equiv="Cache-Control" content="no-siteapp" />
   <link rel="alternate icon" type="image/png" href="assets/i/favicon.png">
   <link rel="stylesheet" href="assets/css/amazeui.min.css" />
+  <link rel="stylesheet" href="assets/css/app.css">
   <style>
     .header {
       text-align: center;
@@ -52,9 +53,16 @@
           <input name="" value="登 录" class="am-btn am-btn-primary am-btn-sm am-fl" id='submit'>
         </div>
       </form>
-      <!-- <p>© 2019 created by wuming&youtang</p> -->
+
     </div>
   </div>
+  <footer class="am-margin-top">
+    <hr />
+    <p class="am-text-center">
+      <small>Copyright ©2019 <a href='mailto:renwuming@foxmail.com'>Renwuming</a> and <a
+          href='mailto:aprillcy@126.com'>Liyoutang</a> 为爱发电</small>
+    </p>
+  </footer>
   <script src='./assets/js/config.js'></script>
   <script src='./assets/js/zepto.js'></script>
   <script>
@@ -62,7 +70,7 @@
     var password = document.querySelector('#password')
     var submit = document.querySelector('#submit')
     var callback = getQuery('callback') // 获取回调网址
-    if(callback) callback = decodeURIComponent(callback)
+    if (callback) callback = decodeURIComponent(callback)
 
     submit.addEventListener('click', function () {
       $.ajax({
@@ -82,7 +90,7 @@
           if (res.code === 500) {
             alert('请正确填写！')
           } else {
-            if(callback) {
+            if (callback) {
               window.location = callback
             } else {
               window.location = './index'

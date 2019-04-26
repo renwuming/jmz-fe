@@ -4,3 +4,11 @@
     margin-left: 20px;
     color: #27ae60;
   }
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+small {
+  font-size: 100%;
+}
