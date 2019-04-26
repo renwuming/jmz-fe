@@ -83,7 +83,7 @@
                   </tr>
                 </thead>
                 <tbody id='tbody'>
-                  
+
                 </tbody>
               </table>
             </form>
@@ -122,7 +122,6 @@
           if (res.code === 408) {
             gotoLogin()
           } else {
-            console.log(res)
             var list = res.map((room, index) => {
               const status = room.activeGame ? '游戏中' : '未开始游戏'
               let html = `
@@ -133,8 +132,8 @@
                 <td><a href="#">${status}</a></td>
                 <td>
                   <div class="am-btn-toolbar">
-                    <div class="am-btn-group am-btn-group-xs">
-                      <button class="am-btn am-btn-default am-btn-xs am-text-secondary"><a href="./room?id=${room._id}" target="_blank"><span class="am-icon-sign-in"></span>&nbsp;&nbsp;进入房间</a></button>
+                      <div class="am-btn-group am-btn-group-xs">
+                        <a href="./room?id=${room._id}" target="_blank" class="am-btn am-btn-default am-btn-xs am-text-secondary"><span class="am-icon-sign-in"></span>&nbsp;&nbsp;进入房间</a>
                     </div>
                   </div>
                 </td>
