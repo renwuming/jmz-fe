@@ -12,3 +12,10 @@ footer {
 small {
   font-size: 100%;
 }
+.msg-con {
+  color: #ee9f28;
+  border: 1px solid #faf1d7;
+  background-color: #fffff1;
+  padding: 0 6px;
+  margin: 0 4px;
+}
