@@ -19,3 +19,34 @@ small {
   padding: 0 6px;
   margin: 0 4px;
 }
+.label {
+  display: inline-block;
+  padding: 2px 10px;
+  font-size: 10.152px;
+  line-height: 14px;
+  color: #ffffff;
+  vertical-align: baseline;
+  white-space: nowrap;
+  background-color: #999999;
+  -webkit-border-radius: 1px;
+  -moz-border-radius: 1px;
+  border-radius: 1px;
+  cursor: default;
+  font-weight: bold;
+  min-width: 56px;
+  text-align: center;
+}
+.label-red {
+  background-color: #ea4a36;
+}
+.label-green {
+  background-color: #22cd6e;
+}
+.label-blue {
+  background-color: #2597dd;
+}
+.btn-mini {
+  padding: .2em .8em;
+  margin-bottom: 0!important;
+}
+
