@@ -188,6 +188,9 @@
             if (activeGame && res.inRoom) {
               gameID = res.activeGame
               observe.style.display = 'inline-block'
+              if(inGame) {
+                gotoGame(gameID, 'self')
+              }
             }
           }
         },
@@ -395,8 +398,13 @@
     })
 
 
-    function gotoGame(id) {
-      window.open('http://cdn.renwuming.cn/jmz-fe/web-mobile/index?id=' + id)
+    function gotoGame(id, mode) {
+      const url = 'http://cdn.renwuming.cn/jmz-fe/web-mobile/index?id=' + id
+      if(mode === 'self') {
+        window.location = url
+      } else {
+        window.open(url)
+      }
     }
   </script>
 </body>
