@@ -188,7 +188,7 @@
             if (activeGame && res.inRoom) {
               gameID = res.activeGame
               observe.style.display = 'inline-block'
-              if(inGame) {
+              if(inGame && !ownRoom) { // 在游戏中且不是房主，直接跳转到游戏
                 gotoGame(gameID, 'self')
               }
             }
