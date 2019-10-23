@@ -1,237 +1,278 @@
-<!doctype html>
+<!DOCTYPE html>
 <html class="no-js">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>房间 | 截码战</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="renderer" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <link rel="icon" type="image/png" href="assets/i/favicon.png" />
+    <link
+      rel="apple-touch-icon-precomposed"
+      href="assets/i/app-icon72x72@2x.png"
+    />
+    <meta name="apple-mobile-web-app-title" content="Amaze UI" />
+    <link rel="stylesheet" href="assets/css/amazeui.min.css" />
+    <link rel="stylesheet" href="assets/css/admin.css" />
+    <link rel="stylesheet" href="assets/css/app.css" />
+    <style>
+      .main-btn {
+        margin-bottom: 14px;
+        min-width: 200px;
+      }
+    </style>
+  </head>
 
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>房间 | 截码战</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="renderer" content="webkit">
-  <meta http-equiv="Cache-Control" content="no-siteapp" />
-  <link rel="icon" type="image/png" href="assets/i/favicon.png">
-  <link rel="apple-touch-icon-precomposed" href="assets/i/app-icon72x72@2x.png">
-  <meta name="apple-mobile-web-app-title" content="Amaze UI" />
-  <link rel="stylesheet" href="assets/css/amazeui.min.css" />
-  <link rel="stylesheet" href="assets/css/admin.css">
-  <link rel="stylesheet" href="assets/css/app.css">
-  <style>
-    .main-btn {
-      margin-bottom: 14px;
-      min-width: 200px;
-    }
-  </style>
-</head>
+  <body>
+    <!--[if lte IE 9]>
+      <p class="browsehappy">
+        你正在使用<strong>过时</strong>的浏览器，Amaze UI 暂不支持。 请
+        <a href="http://browsehappy.com/" target="_blank">升级浏览器</a>
+        以获得更好的体验！
+      </p>
+    <![endif]-->
 
-<body>
-  <!--[if lte IE 9]>
-<p class="browsehappy">你正在使用<strong>过时</strong>的浏览器，Amaze UI 暂不支持。 请 <a href="http://browsehappy.com/" target="_blank">升级浏览器</a>
-  以获得更好的体验！</p>
-<![endif]-->
+    <header class="am-topbar am-topbar-inverse admin-header">
+      <div class="am-topbar-brand">
+        <strong>截码战</strong>&nbsp;<small>房间</small
+        ><a href="./rule" class="rule-tip" target="_blank">| 查看规则</a>
+      </div>
+    </header>
 
-  <header class="am-topbar am-topbar-inverse admin-header">
-    <div class="am-topbar-brand">
-      <strong>截码战</strong>&nbsp;<small>房间</small><a href='./rule' class='rule-tip' target='_blank'>| 查看规则</a>
-    </div>
+    <div class="am-cf admin-main">
+      <!-- content start -->
+      <div class="admin-content">
+        <div class="admin-content-body">
+          <div class="am-g">
+            <div class="am-u-sm-12" style="margin-bottom:40px;">
+              <form class="am-form">
+                <table
+                  class="am-table am-table-striped am-table-hover table-main"
+                >
+                  <thead>
+                    <tr>
+                      <th class="table-check">
+                        <!-- <input type="checkbox" /> -->
+                      </th>
+                      <th class="table-id"></th>
+                      <th class="table-title">玩家</th>
+                      <th class="table-title">队伍</th>
+                      <th class="table-title">操作</th>
+                    </tr>
+                  </thead>
+                  <tbody id="tbody"></tbody>
+                </table>
+              </form>
+            </div>
 
-  </header>
-
-  <div class="am-cf admin-main">
-
-    <!-- content start -->
-    <div class="admin-content">
-      <div class="admin-content-body">
-        <div class="am-g">
-          <div class="am-u-sm-12" style="margin-bottom:40px;">
-            <form class="am-form">
-              <table class="am-table am-table-striped am-table-hover table-main">
-                <thead>
-                  <tr>
-                    <th class="table-check">
-                      <!-- <input type="checkbox" /> -->
-                    </th>
-                    <th class="table-id"></th>
-                    <th class="table-title">玩家</th>
-                    <th class="table-title">队伍</th>
-                    <th class="table-title">操作</th>
-                  </tr>
-                </thead>
-                <tbody id='tbody'>
-                </tbody>
-              </table>
-            </form>
-          </div>
-
-          <div class="am-cf" style='text-align: center;'>
-            <button type="button" class="am-btn am-btn-primary main-btn" id='submit' style='display:none;'>开始游戏</button>
-          </div>
-          <div class="am-cf" style='text-align: center;'>
-            <button type="button" class="am-btn am-btn-primary main-btn" id='join' style='display:none;'>加入房间</button>
-          </div>
-          <div class="am-cf" style='text-align: center;'>
-            <button type="button" class="am-btn am-btn-primary main-btn" id='observe' style='display:none;'>旁观游戏</button>
-          </div>
-          <div class="am-cf" style='text-align: center;'>
-            <button type="button" class="am-btn am-btn-warning main-btn" id='teammode' style='display:none;'></button>
-          </div>
-          <div class="am-cf" style='text-align: center;'>
-            <button type="button" class="am-btn am-btn-danger main-btn" id='quit'>退出房间</button>
-          </div>
-          <div class="am-cf" style='text-align: center;'>
-            <button type="button" class="am-btn am-btn-danger main-btn" id='stop' style='display:none;'>终止游戏</button>
+            <div class="am-cf" style="text-align: center;">
+              <button
+                type="button"
+                class="am-btn am-btn-primary main-btn"
+                id="submit"
+                style="display:none;"
+              >
+                开始游戏
+              </button>
+            </div>
+            <div class="am-cf" style="text-align: center;">
+              <button
+                type="button"
+                class="am-btn am-btn-primary main-btn"
+                id="join"
+                style="display:none;"
+              >
+                加入房间
+              </button>
+            </div>
+            <div class="am-cf" style="text-align: center;">
+              <button
+                type="button"
+                class="am-btn am-btn-primary main-btn"
+                id="observe"
+                style="display:none;"
+              >
+                旁观游戏
+              </button>
+            </div>
+            <div class="am-cf" style="text-align: center;">
+              <button
+                type="button"
+                class="am-btn am-btn-warning main-btn"
+                id="teammode"
+                style="display:none;"
+              ></button>
+            </div>
+            <div class="am-cf" style="text-align: center;">
+              <button
+                type="button"
+                class="am-btn am-btn-danger main-btn"
+                id="quit"
+              >
+                退出房间
+              </button>
+            </div>
+            <div class="am-cf" style="text-align: center;">
+              <button
+                type="button"
+                class="am-btn am-btn-danger main-btn"
+                id="stop"
+                style="display:none;"
+              >
+                终止游戏
+              </button>
+            </div>
           </div>
         </div>
       </div>
-
+      <!-- content end -->
     </div>
-    <!-- content end -->
-  </div>
 
+    <!--[if lt IE 9]>
+      <script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
+      <script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
+      <script src="assets/js/amazeui.ie8polyfill.min.js"></script>
+    <![endif]-->
 
-  <!--[if lt IE 9]>
-<script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
-<script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
-<script src="assets/js/amazeui.ie8polyfill.min.js"></script>
-<![endif]-->
+    <!--[if (gte IE 9)|!(IE)]><!-->
+    <!--<![endif]-->
+    <script src="./assets/js/config.js"></script>
+    <script src="./assets/js/zepto.js"></script>
+    <script>
+      var submit = document.querySelector('#submit')
+      var teammode = document.querySelector('#teammode')
+      var join = document.querySelector('#join')
+      var quit = document.querySelector('#quit')
+      var observe = document.querySelector('#observe')
+      var stop = document.querySelector('#stop')
+      var id = getQuery('id') // 获取roomID
+      var gameID = null
+      var userList = []
+      var teammodeStatus = false
+      var ownRoom = false
+      var inGame = false
+      var activeGame = false
 
-  <!--[if (gte IE 9)|!(IE)]><!-->
-  <!--<![endif]-->
-  <script src='./assets/js/config.js'></script>
-  <script src='./assets/js/zepto.js'></script>
-  <script>
-    var submit = document.querySelector('#submit')
-    var teammode = document.querySelector('#teammode')
-    var join = document.querySelector('#join')
-    var quit = document.querySelector('#quit')
-    var observe = document.querySelector('#observe')
-    var stop = document.querySelector('#stop')
-    var id = getQuery('id') // 获取roomID
-    var gameID = null
-    var userList = []
-    var teammodeStatus = false
-    var ownRoom = false
-    var inGame = false
-    var activeGame = false
+      getRoomData() // 获取房间数据
 
-    getRoomData() // 获取房间数据
-
-
-    join.addEventListener('click', function () {
-      joinRoom() // 加入房间
-    })
-
-    quit.addEventListener('click', function () {
-      $.ajax({
-        url: HOST + '/rooms/' + id + '/quit',
-        contentType: "application/json",
-        type: "POST",
-        crossDomain: true,
-        xhrFields: {
-          withCredentials: true
-        },
-        dataType: 'json',
-        success: function (res) {
-          if ((res || {}).code === 408) {
-            gotoLogin()
-          }
-          window.location = './index'
-        },
+      join.addEventListener('click', function() {
+        joinRoom() // 加入房间
       })
-    })
 
-
-    function joinRoom() {
-      $.ajax({
-        url: HOST + '/rooms/' + id,
-        contentType: "application/json",
-        type: "POST",
-        crossDomain: true,
-        xhrFields: {
-          withCredentials: true
-        },
-        dataType: 'json',
-        success: function (res) {
-          if ((res || {}).code === 408) {
-            gotoLogin()
-          }
-          join.style.display = 'none'
-          alert('加入房间成功！')
-        },
-      })
-    }
-
-    function getRoomData() {
-      $.ajax({
-        url: HOST + '/rooms/' + id,
-        type: "GET",
-        crossDomain: true,
-        xhrFields: {
-          withCredentials: true
-        },
-        success: function (res) {
-          if ((res || {}).code === 408) {
-            gotoLogin()
-          } else if (res.userList) {
-            userList = res.userList
-            teammodeStatus = !!res.mode
-            ownRoom = !!res.ownRoom
-            inGame = !!res.inGame
-            activeGame = !!res.activeGame
-            initBtns()
-            initTeammode()
-            initUserList()
-            // 若为房主，则可以开始游戏
-            if (ownRoom && !activeGame) {
-              submit.style.display = 'inline-block'
-            } else if (!res.inRoom) {
-              join.style.display = 'inline-block'
+      quit.addEventListener('click', function() {
+        $.ajax({
+          url: HOST + '/rooms/' + id + '/quit',
+          contentType: 'application/json',
+          type: 'POST',
+          crossDomain: true,
+          xhrFields: {
+            withCredentials: true
+          },
+          dataType: 'json',
+          success: function(res) {
+            if ((res || {}).code === 408) {
+              gotoLogin()
             }
-            if (activeGame && res.inRoom) {
-              gameID = res.activeGame
-              observe.style.display = 'inline-block'
-              if(inGame && !ownRoom) { // 在游戏中且不是房主，直接跳转到游戏
-                gotoGame(gameID, 'self')
+            window.location = './index'
+          }
+        })
+      })
+
+      function joinRoom() {
+        $.ajax({
+          url: HOST + '/rooms/' + id,
+          contentType: 'application/json',
+          type: 'POST',
+          crossDomain: true,
+          xhrFields: {
+            withCredentials: true
+          },
+          dataType: 'json',
+          success: function(res) {
+            if ((res || {}).code === 408) {
+              gotoLogin()
+            }
+            join.style.display = 'none'
+            alert('加入房间成功！')
+          }
+        })
+      }
+
+      function getRoomData() {
+        $.ajax({
+          url: HOST + '/rooms/' + id,
+          type: 'GET',
+          crossDomain: true,
+          xhrFields: {
+            withCredentials: true
+          },
+          success: function(res) {
+            if ((res || {}).code === 408) {
+              gotoLogin()
+            } else if (res.userList) {
+              userList = res.userList
+              teammodeStatus = !!res.mode
+              ownRoom = !!res.ownRoom
+              inGame = !!res.inGame
+              activeGame = !!res.activeGame
+              initBtns()
+              initTeammode()
+              initUserList()
+              // 若为房主，则可以开始游戏
+              if (ownRoom && !activeGame) {
+                submit.style.display = 'inline-block'
+              } else if (!res.inRoom) {
+                join.style.display = 'inline-block'
+              }
+              if (activeGame && res.inRoom) {
+                gameID = res.activeGame
+                observe.style.display = 'inline-block'
+                if (inGame && !ownRoom) {
+                  // 在游戏中且不是房主，直接跳转到游戏
+                  gotoGame(gameID, 'self')
+                }
               }
             }
           }
-        },
-      })
+        })
 
-      setTimeout(getRoomData, 3000)
-    }
-
-    function initBtns() {
-      if(activeGame) {
-        submit.style.display = 'none'
-        if(inGame) quit.style.display = 'none'
-        if(ownRoom) stop.style.display = 'inline-block'
-      } else {
-        stop.style.display = 'none'
-        observe.style.display = 'none'
-        quit.style.display = 'inline-block'
+        setTimeout(getRoomData, 3000)
       }
-      if(inGame) {
-        observe.innerHTML = '继续游戏'
-      } else {
-        observe.innerHTML = '旁观游戏'
-      }
-    }
 
-    function initTeammode() {
-      if(teammodeStatus) {
-        teammode.innerHTML = '队伍模式：固定'
-      } else {
-        teammode.innerHTML = '队伍模式：随机'
+      function initBtns() {
+        if (activeGame) {
+          submit.style.display = 'none'
+          if (inGame) quit.style.display = 'none'
+          if (ownRoom) stop.style.display = 'inline-block'
+        } else {
+          stop.style.display = 'none'
+          observe.style.display = 'none'
+          quit.style.display = 'inline-block'
+        }
+        if (inGame) {
+          observe.innerHTML = '继续游戏'
+        } else {
+          observe.innerHTML = '旁观游戏'
+        }
       }
-      if(ownRoom && !activeGame) teammode.style.display = 'inline-block'
-      else teammode.style.display = 'none'
-    }
 
-    function initUserList() {
-      const L = userList.length
-      list = userList.map((user, index) => {
-        const team = getTeam(index)
-        const action = getAction(index, L)
-        let html = `
+      function initTeammode() {
+        if (teammodeStatus) {
+          teammode.innerHTML = '队伍模式：固定'
+        } else {
+          teammode.innerHTML = '队伍模式：随机'
+        }
+        if (ownRoom && !activeGame) teammode.style.display = 'inline-block'
+        else teammode.style.display = 'none'
+      }
+
+      function initUserList() {
+        const L = userList.length
+        list = userList.map((user, index) => {
+          const team = getTeam(index)
+          const action = getAction(index, L)
+          let html = `
         <tr>
           <td></td>
           <td>${index + 1}</td>
@@ -239,174 +280,171 @@
           <td>${team}</td>
           <td>${action}</td>
         </tr>`
-        return html
-      })
-      document.querySelector('#tbody').innerHTML = list.join('')
-    }
-
-    $('.am-table').on('click', '.up-btn', function(e) {
-      const index = +$(this).attr('index')
-      const l1 = userList[index]
-      const l2 = userList[index - 1]
-      userList[index] = l2
-      userList[index - 1] = l1
-      updateUserList()
-      initUserList()
-    }) 
-
-    $('.am-table').on('click', '.down-btn', function(e) {
-      const index = +$(this).attr('index')
-      const l1 = userList[index]
-      const l2 = userList[index + 1]
-      userList[index] = l2
-      userList[index + 1] = l1
-      updateUserList()
-      initUserList()
-    }) 
-
-    function getAction(index, L) {
-      if(!ownRoom || activeGame) return ''
-      if(L === 2) return ''
-      if(index === 0) return ''
-      const up = `<button type="button" class="am-btn am-btn-default am-btn-xs btn-mini up-btn" style="margin-right:10px;" index="${index}"><i class="am-icon-arrow-up"></i></button>`
-      const down = `<button type="button" class="am-btn am-btn-default am-btn-xs btn-mini down-btn" index="${index}"><i class="am-icon-arrow-down"></i></button>`
-      if(index === 1) return down
-      if(index === L - 1) return up
-      return up + down
-    }
-
-    function getTeam(index) {
-      let type = 0
-      if(index < 2) {
-        if(teammodeStatus) type = 1
-        else type = 0
-      } else if(index < 4) {
-        if(teammodeStatus) type = 2
-        else type = 0
-      } else {
-        type = 3
+          return html
+        })
+        document.querySelector('#tbody').innerHTML = list.join('')
       }
-      const teamMap = [
-        '<span class="label label-blue">随机</span>',
-        '<span class="label label-red">马里奥</span>',
-        '<span class="label label-green">酷霸王</span>',
-        '<span class="label">旁观者</span>',
-      ]
-      return teamMap[type]
-    }
 
-    function updateUserList() {
-      $.ajax({
-        url: HOST + '/rooms/' + id + '/userList',
-        contentType: "application/json",
-        type: "POST",
-        crossDomain: true,
-        xhrFields: {
-          withCredentials: true
-        },
-        data: JSON.stringify({
-          userList
-        }),
-        dataType: 'json',
-        success: function (res) {
-          if (res.code === 408) {
-            gotoLogin()
-          } else if (res.code === 501) {
-            alert('你不是房主！')
-          }
-        },
+      $('.am-table').on('click', '.up-btn', function(e) {
+        const index = +$(this).attr('index')
+        const l1 = userList[index]
+        const l2 = userList[index - 1]
+        userList[index] = l2
+        userList[index - 1] = l1
+        updateUserList()
+        initUserList()
       })
-    }
 
-
-    observe.addEventListener('click', function () {
-      gotoGame(gameID)
-    })
-
-    submit.addEventListener('click', function () {
-      $.ajax({
-        url: HOST + '/rooms/' + id + '/start',
-        contentType: "application/json",
-        type: "POST",
-        crossDomain: true,
-        xhrFields: {
-          withCredentials: true
-        },
-        dataType: 'json',
-        success: function (res) {
-          if (res.code === 408) {
-            gotoLogin()
-          } else if (res.code === 501) {
-            alert('你不是房主 or 人数小于4！')
-          } else if (res.id) {
-            gameID = res.id
-            activeGame = true
-            initBtns()
-            gotoGame(res.id)
-          }
-        },
+      $('.am-table').on('click', '.down-btn', function(e) {
+        const index = +$(this).attr('index')
+        const l1 = userList[index]
+        const l2 = userList[index + 1]
+        userList[index] = l2
+        userList[index + 1] = l1
+        updateUserList()
+        initUserList()
       })
-    })
 
-    $(teammode).on('click', function() {
-      $.ajax({
-        url: HOST + '/rooms/' + id + '/mode',
-        contentType: "application/json",
-        type: "POST",
-        crossDomain: true,
-        xhrFields: {
-          withCredentials: true
-        },
-        data: JSON.stringify({
-          mode: !teammodeStatus,
-        }),
-        dataType: 'json',
-        success: function (res) {
-          if (res.code === 408) {
-            gotoLogin()
-          } else if (res.code === 501) {
-            alert('你不是房主！')
-          } else {
-            teammodeStatus = res.mode
-            initTeammode()
-            initUserList()
-          }
-        },
-      })
-    })
-
-    $(stop).on('click', function() {
-      $.ajax({
-        url: HOST + '/rooms/' + id + '/stop',
-        contentType: "application/json",
-        type: "POST",
-        crossDomain: true,
-        xhrFields: {
-          withCredentials: true
-        },
-        dataType: 'json',
-        success: function (res) {
-          if (res.code === 408) {
-            gotoLogin()
-          } else if (res.code === 501) {
-            alert('你不是房主！')
-          } else {
-            getRoomData()
-          }
-        },
-      })
-    })
-
-
-    function gotoGame(id, mode) {
-      const url = 'http://cdn.renwuming.cn/jmz-fe/web-mobile/index?id=' + id
-      if(mode === 'self') {
-        window.location = url
-      } else {
-        window.open(url)
+      function getAction(index, L) {
+        if (!ownRoom || activeGame) return ''
+        if (L === 2) return ''
+        if (index === 0) return ''
+        const up = `<button type="button" class="am-btn am-btn-default am-btn-xs btn-mini up-btn" style="margin-right:10px;" index="${index}"><i class="am-icon-arrow-up"></i></button>`
+        const down = `<button type="button" class="am-btn am-btn-default am-btn-xs btn-mini down-btn" index="${index}"><i class="am-icon-arrow-down"></i></button>`
+        if (index === 1) return down
+        if (index === L - 1) return up
+        return up + down
       }
-    }
-  </script>
-</body>
 
+      function getTeam(index) {
+        let type = 0
+        if (index < 2) {
+          if (teammodeStatus) type = 1
+          else type = 0
+        } else if (index < 4) {
+          if (teammodeStatus) type = 2
+          else type = 0
+        } else {
+          type = 3
+        }
+        const teamMap = [
+          '<span class="label label-blue">随机</span>',
+          '<span class="label label-red">马里奥</span>',
+          '<span class="label label-green">酷霸王</span>',
+          '<span class="label">旁观者</span>'
+        ]
+        return teamMap[type]
+      }
+
+      function updateUserList() {
+        $.ajax({
+          url: HOST + '/rooms/' + id + '/userList',
+          contentType: 'application/json',
+          type: 'POST',
+          crossDomain: true,
+          xhrFields: {
+            withCredentials: true
+          },
+          data: JSON.stringify({
+            userList
+          }),
+          dataType: 'json',
+          success: function(res) {
+            if (res.code === 408) {
+              gotoLogin()
+            } else if (res.code === 501) {
+              alert('你不是房主！')
+            }
+          }
+        })
+      }
+
+      observe.addEventListener('click', function() {
+        gotoGame(gameID)
+      })
+
+      submit.addEventListener('click', function() {
+        $.ajax({
+          url: HOST + '/rooms/' + id + '/start',
+          contentType: 'application/json',
+          type: 'POST',
+          crossDomain: true,
+          xhrFields: {
+            withCredentials: true
+          },
+          dataType: 'json',
+          success: function(res) {
+            if (res.code === 408) {
+              gotoLogin()
+            } else if (res.code === 501) {
+              alert('你不是房主 or 人数小于4！')
+            } else if (res.id) {
+              gameID = res.id
+              activeGame = true
+              initBtns()
+              gotoGame(res.id)
+            }
+          }
+        })
+      })
+
+      $(teammode).on('click', function() {
+        $.ajax({
+          url: HOST + '/rooms/' + id + '/mode',
+          contentType: 'application/json',
+          type: 'POST',
+          crossDomain: true,
+          xhrFields: {
+            withCredentials: true
+          },
+          data: JSON.stringify({
+            mode: !teammodeStatus
+          }),
+          dataType: 'json',
+          success: function(res) {
+            if (res.code === 408) {
+              gotoLogin()
+            } else if (res.code === 501) {
+              alert('你不是房主！')
+            } else {
+              teammodeStatus = res.mode
+              initTeammode()
+              initUserList()
+            }
+          }
+        })
+      })
+
+      $(stop).on('click', function() {
+        $.ajax({
+          url: HOST + '/rooms/' + id + '/stop',
+          contentType: 'application/json',
+          type: 'POST',
+          crossDomain: true,
+          xhrFields: {
+            withCredentials: true
+          },
+          dataType: 'json',
+          success: function(res) {
+            if (res.code === 408) {
+              gotoLogin()
+            } else if (res.code === 501) {
+              alert('你不是房主！')
+            } else {
+              getRoomData()
+            }
+          }
+        })
+      })
+
+      function gotoGame(id, mode) {
+        const url = 'https://www.renwuming.cn/jmz-fe/web-mobile/index?id=' + id
+        if (mode === 'self') {
+          window.location = url
+        } else {
+          window.open(url)
+        }
+      }
+    </script>
+  </body>
 </html>

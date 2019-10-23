@@ -1,7 +1,7 @@
 // var HOST = 'http://www.renwuming.cn/jmz' // TODO
 // var ROOT_HOST = 'http://www.renwuming.cn/auth' // TODO
 // var CALLBACK = 'http://www.renwuming.cn/jmz-fe' // TODO
-var HOST = 'https://www.renwuming.cn/jmz'
+var HOST = 'https://www.renwuming.cn/jmz-pc'
 var AUTH_HOST = 'https://www.renwuming.cn/auth'
 var CALLBACK = 'https://www.renwuming.cn/jmz-fe'
 
