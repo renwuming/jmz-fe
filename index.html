@@ -13,7 +13,6 @@
     <link rel="stylesheet" href="assets/css/admin.css" />
     <link rel="stylesheet" href="assets/css/app.css" />
     <style>
-      .admin-content,
       .admin-sidebar {
         overflow: hidden;
       }
@@ -27,76 +26,33 @@
       #submit {
         color: #0e90d2;
       }
+
+      .admin-content {
+        overflow: scroll;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .admin-content-body {
+      }
+      .am-panel {
+        max-width: 500px;
+      }
     </style>
   </head>
 
   <body>
-    <header class="am-topbar am-topbar-inverse admin-header">
+    <!-- <header class="am-topbar am-topbar-inverse admin-header">
       <div class="am-topbar-brand">
         <strong>截码战</strong>&nbsp;<small>首页</small>
       </div>
-    </header>
-
-    <div class="am-cf admin-main">
-      <!-- sidebar start -->
-      <div class="admin-sidebar am-offcanvas" id="admin-offcanvas">
-        <div class="am-offcanvas-bar admin-offcanvas-bar">
-          <ul class="am-list admin-sidebar-list">
-            <li>
-              <a href="#"
-                ><span class="am-icon"></span> <span id="nick"></span
-              ></a>
-            </li>
-            <li>
-              <a href="#" id="submit"
-                ><span class="am-icon-home"></span> 创建房间</a
-              >
-            </li>
-            <li>
-              <a href="./rule" target="_blank"
-                ><span class="am-icon-book"></span> 查看规则</a
-              >
-            </li>
-            <li>
-              <a href="#" id="logout" style="display:none;"
-                ><span class="am-icon-sign-out"></span> 注销</a
-              >
-            </li>
-          </ul>
-          <!-- <div class="am-panel am-panel-default admin-sidebar-panel">
-          <div class="am-panel-bd">
-            <p><span class="am-icon-bookmark"></span> 意见反馈</p>
-            <p><a target='_blank' href="https://docs.qq.com/form/fill/DV2ZaU2ZRWGdtd25Q?_w_tencentdocx_form=1">请尽情点击我(*≧▽≦)</a></p>
-          </div>
-        </div> -->
-          <div class="am-panel am-panel-default admin-sidebar-panel">
-            <div class="am-panel-bd">
-              <p><span class="am-icon-bookmark"></span> 公告</p>
-              <p style="font-size:14px;">小程序版截码战已上线(*≧▽≦)</p>
-              <img
-                style="width:80%;margin-left:10%;"
-                src="http://cdn.renwuming.cn/static/jmz/qrcode.jpg"
-              />
-            </div>
-          </div>
-          <div class="am-panel am-panel-default admin-sidebar-panel">
-            <div class="am-panel-bd">
-              <p><span class="am-icon-bookmark"></span> 公告</p>
-              <p style="font-size:14px;">扫描下方二维码，进群一起玩~</p>
-              <img
-                style="width:80%;margin-left:10%;"
-                src="http://cdn.renwuming.cn/static/jmz/group.jpg"
-              />
-            </div>
-          </div>
-        </div>
-      </div>
+    </header> -->
       <!-- sidebar end -->
 
       <!-- content start -->
       <div class="admin-content">
         <div class="admin-content-body">
-          <div class="am-cf am-padding am-padding-bottom-0">
+          <!-- <div class="am-cf am-padding am-padding-bottom-0">
             <div class="am-fl am-cf">
               <strong class="am-text-primary am-text-lg">房间列表</strong>
             </div>
@@ -123,13 +79,56 @@
                 </table>
               </form>
             </div>
+          </div> -->
+          <!-- <ul class="am-list admin-sidebar-list">
+            <li>
+              <a href="#"
+                ><span class="am-icon"></span> <span id="nick"></span
+              ></a>
+            </li>
+            <li>
+              <a href="#" id="submit"
+                ><span class="am-icon-home"></span> 创建房间</a
+              >
+            </li>
+            <li>
+              <a href="./rule" target="_blank"
+                ><span class="am-icon-book"></span> 查看规则</a
+              >
+            </li>
+            <li>
+              <a href="#" id="logout" style="display: none;"
+                ><span class="am-icon-sign-out"></span> 注销</a
+              >
+            </li>
+          </ul> -->
+
+          <div class="am-panel am-panel-default admin-sidebar-panel">
+            <div class="am-panel-bd">
+              <p><span class="am-icon-bookmark"></span> 公告</p>
+              <p style="font-size: 14px;">小程序版截码战已上线(*≧▽≦)</p>
+              <img
+                style="width: 80%; margin-left: 10%;"
+                src="http://cdn.renwuming.cn/static/jmz/qrcode.jpg"
+              />
+            </div>
+          </div>
+          <div class="am-panel am-panel-default admin-sidebar-panel">
+            <div class="am-panel-bd">
+              <p><span class="am-icon-bookmark"></span> 公告</p>
+              <p style="font-size: 14px;">扫描下方二维码，进群一起玩~</p>
+              <img
+                style="width: 80%; margin-left: 10%;"
+                src="http://cdn.renwuming.cn/static/jmz/group.jpg"
+              />
+            </div>
           </div>
         </div>
       </div>
       <!-- content end -->
     </div>
 
-    <footer class="am-margin-top">
+    <!-- <footer class="am-margin-top">
       <hr />
       <p class="am-text-center">
         <small
@@ -138,35 +137,35 @@
           <a href="mailto:aprillcy@126.com">Liyoutang</a> 为爱发电</small
         >
       </p>
-    </footer>
+    </footer> -->
     <script src="./assets/js/config.js"></script>
     <script src="./assets/js/zepto.js"></script>
     <script>
-      var submit = document.querySelector('#submit')
-      var nick = document.querySelector('#nick')
-      var logout = document.querySelector('#logout')
+      var submit = document.querySelector("#submit");
+      var nick = document.querySelector("#nick");
+      var logout = document.querySelector("#logout");
 
       const loginBtn =
-        '<button type="button" class="am-btn am-btn-primary main-btn"  onclick="gotoLogin()">登录</button>'
+        '<button type="button" class="am-btn am-btn-primary main-btn"  onclick="gotoLogin()">登录</button>';
 
-      getUserInfo()
-      getRoomList()
+      getUserInfo();
+      getRoomList();
 
       function getRoomList() {
         $.ajax({
-          url: HOST + '/rooms',
-          type: 'GET',
+          url: HOST + "/rooms",
+          type: "GET",
           crossDomain: true,
           xhrFields: {
-            withCredentials: true
+            withCredentials: true,
           },
-          success: function(res) {
+          success: function (res) {
             if (res.code === 408) {
-              document.querySelector('#tbody').innerHTML =
-                '<tr><td colspan="5" style="text-align:center;">请先<a href="#" onclick="gotoLogin()">登录</a></td></tr>'
+              document.querySelector("#tbody").innerHTML =
+                '<tr><td colspan="5" style="text-align:center;">请先<a href="#" onclick="gotoLogin()">登录</a></td></tr>';
             } else {
               var list = res.map((room, index) => {
-                const status = room.activeGame ? '游戏中' : '未开始游戏'
+                const status = room.activeGame ? "游戏中" : "未开始游戏";
                 let html = `
               <tr>
                 <td></td>
@@ -182,75 +181,75 @@
                     </div>
                   </div>
                 </td>
-              </tr>`
-                return html
-              })
-              document.querySelector('#tbody').innerHTML = list.join('')
+              </tr>`;
+                return html;
+              });
+              document.querySelector("#tbody").innerHTML = list.join("");
             }
-          }
-        })
-        setTimeout(getRoomList, 3000)
+          },
+        });
+        setTimeout(getRoomList, 3000);
       }
 
       function getUserInfo() {
         $.ajax({
-          url: HOST + '/users',
-          type: 'GET',
+          url: HOST + "/users",
+          type: "GET",
           crossDomain: true,
           xhrFields: {
-            withCredentials: true
+            withCredentials: true,
           },
-          success: function(res) {
+          success: function (res) {
             if (res.code === 408) {
-              nick.innerHTML = loginBtn
+              nick.innerHTML = loginBtn;
             } else {
-              nick.innerHTML = res.nick
-              logout.style.display = 'block'
+              nick.innerHTML = res.nick;
+              logout.style.display = "block";
 
-              logout.addEventListener('click', function() {
+              logout.addEventListener("click", function () {
                 $.ajax({
-                  url: HOST + '/users/logout',
-                  contentType: 'application/json',
-                  type: 'POST',
-                  dataType: 'json',
+                  url: HOST + "/users/logout",
+                  contentType: "application/json",
+                  type: "POST",
+                  dataType: "json",
                   xhrFields: {
-                    withCredentials: true
+                    withCredentials: true,
                   },
-                  success: function(res) {
+                  success: function (res) {
                     if (res.code === 500) {
-                      alert('注销失败')
+                      alert("注销失败");
                     } else {
-                      window.location = './'
+                      window.location = "./";
                     }
-                  }
-                })
-              })
+                  },
+                });
+              });
             }
-          }
-        })
+          },
+        });
 
-        setTimeout(getUserInfo, 3000)
+        setTimeout(getUserInfo, 3000);
       }
 
-      submit.addEventListener('click', function() {
+      submit.addEventListener("click", function () {
         $.ajax({
-          url: HOST + '/rooms',
-          contentType: 'application/json',
-          type: 'POST',
+          url: HOST + "/rooms",
+          contentType: "application/json",
+          type: "POST",
           crossDomain: true,
           xhrFields: {
-            withCredentials: true
+            withCredentials: true,
           },
-          dataType: 'json',
-          success: function(res) {
+          dataType: "json",
+          success: function (res) {
             if (res.code === 408) {
-              gotoLogin()
+              gotoLogin();
             } else if (res.id) {
-              window.location = './room?id=' + res.id
+              window.location = "./room?id=" + res.id;
             }
-          }
-        })
-      })
+          },
+        });
+      });
     </script>
   </body>
 </html>
